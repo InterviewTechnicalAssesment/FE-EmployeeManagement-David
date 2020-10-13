@@ -87,6 +87,7 @@ export class ListComponent implements OnInit, AfterViewInit {
         pagingType: 'full_numbers',
         pageLength: 10,
           sDom: 'lrtip',
+          autoWidth: false,
         columns: [
         {"data" : "id"},
         {"data" : "username"},
