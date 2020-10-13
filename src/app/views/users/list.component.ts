@@ -33,14 +33,14 @@ export class ListComponent implements OnInit, AfterViewInit {
 
               // If exist, put it in every text input
               if ( colSearch.search ) {
-                $( 'input', dtInstance.column( colIdx ).footer() ).val( colSearch.search );
+                  $( 'input:eq(' + colIdx + ')', 'thead').val( colSearch.search );
               }
             } );
           }
           // Call search on every columns
-          dtInstance.columns().every(function () {
+          dtInstance.columns().every(function (i) {
             const that = this;
-            $('input', this.footer()).on('keyup change', function () {
+              $('input:eq(' + i + ')', 'thead').on('keyup change', function () {
               if (that.search() !== this['value']) {
                 that
                   .search(this['value'])
@@ -80,6 +80,7 @@ export class ListComponent implements OnInit, AfterViewInit {
     buildDtOptions() {
       // Preparing DataTables Options
       return {
+        orderCellsTop: true,
         scrollX:true,
         searching:true,
         stateSave: true,
